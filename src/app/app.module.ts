@@ -1,0 +1,54 @@
+import { RouterModule, Routes } from '@angular/router';
+
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+
+import { AppComponent } from './app.component';
+import { HeaderComponent } from './views/components/layout/header/header.component';
+import { FooterComponent } from './views/components/layout/footer/footer.component';
+import { LayoutComponent } from './views/components/layout/layout.component';
+import { ExchangeRatesModule } from './views/components/exchange-rates/exchange-rates.module';
+import { HistoricRatesModule } from './views/components/historic-rates/historic-rates.module';
+
+const routes: Routes = [
+  {
+    path: '',
+    redirectTo: '/exchange-rates',
+    pathMatch: 'full',
+  },
+];
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    HeaderComponent,
+    LayoutComponent,
+    FooterComponent,
+  ],
+  imports: [
+    BrowserModule,
+    RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload' }),
+    HttpClientModule,
+    ReactiveFormsModule,
+    /* StoreModule.forRoot(appReducers, {
+      runtimeChecks: {
+        strictStateImmutability: false,
+        strictActionImmutability: false,
+      },
+    }),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+      logOnly: environment.production,
+    }),
+    EffectsModule.forRoot([...ActivitiesEffectsArray]),
+ */
+
+    ExchangeRatesModule,
+    HistoricRatesModule,
+  ],
+  providers: [],
+  bootstrap: [AppComponent],
+})
+export class AppModule {}
