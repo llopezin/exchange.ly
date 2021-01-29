@@ -1,1 +1,7 @@
 <p>exchange-rates works</p>
+
+<button (click)="showOverlay()">Add currency</button>
+
+<div *ngIf="overlayVisible">
+    <app-currency-selector-overlay></app-currency-selector-overlay>
+</div>

@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/app.reducers';
-import Rates from 'src/app/shared/models/rates.model';
-import { ExchangeRatesService } from 'src/app/shared/services/exchange-rates.service';
-import { getLatestRates } from 'src/app/shared/store/rates-store/actions/index';
 
 @Component({
   selector: 'app-exchange-rates',
@@ -11,21 +8,17 @@ import { getLatestRates } from 'src/app/shared/store/rates-store/actions/index';
   styleUrls: ['./exchange-rates.component.scss'],
 })
 export class ExchangeRatesComponent implements OnInit {
-  public rates: Rates;
-  public loading: Boolean;
-  public base: string = 'GBP';
+  public overlayVisible: Boolean = false;
 
   constructor(private store: Store<AppState>) {}
 
-  ngOnInit(): void {
-    this.store.dispatch(getLatestRates({ base: this.base }));
-    this.subscribeToRatesStore();
+  ngOnInit(): void {}
+
+  showOverlay() {
+    this.overlayVisible = true;
   }
 
-  subscribeToRatesStore() {
-    this.store.select('ratesApp').subscribe((ratesResponse) => {
-      this.rates = ratesResponse.rates;
-      this.loading = ratesResponse.loading;
-    });
+  hideOverlay() {
+    this.overlayVisible = false;
   }
 }

@@ -1,0 +1,12 @@
+<p>currency-selector-overlay works!</p>
+<div class="currency-select-overlay__wrap">
+    <div class="currency-select-overlay">
+        <form action="post" [formGroup]="addCurrenciesForm" (ngSubmit)="onSubmit()">
+            <div *ngFor="let rate of rates | keyvalue">
+                <input type="checkbox" [name]="rate.key" [id]="rate.key">
+                <label [for]="rate.key">{{rate.key}}</label>
+            </div>
+            <button type="submit">Add</button>
+        </form>
+    </div>
+</div>
