@@ -1,13 +1,15 @@
 import { ActionReducerMap } from '@ngrx/store';
-import * as activityReducers from './shared/store/activities-store/reducers';
-import * as userReducers from './shared/store/user-store/reducers';
+import * as ratesReducers from './shared/store/rates-store/reducers';
+import * as historicRatesReducers from './shared/store/historic-rates-store/reducers';
 
 export interface AppState {
-  activitiesApp: activityReducers.ActivitiesState;
-  usersApp: userReducers.UsersState;
+  ratesApp: ratesReducers.RatesState;
+  historicRatesApp: historicRatesReducers.HistoricRatesState;
+  //usersApp: userReducers.UsersState;
 }
 
 export const appReducers: ActionReducerMap<AppState> = {
-  activitiesApp: activityReducers.activitiesReducer,
-  usersApp: userReducers.usersReducer,
+  ratesApp: ratesReducers.ratesReducer,
+  historicRatesApp: historicRatesReducers.historicRatesReducer,
+  //usersApp: userReducers.usersReducer,
 };

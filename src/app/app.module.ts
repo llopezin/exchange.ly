@@ -11,6 +11,13 @@ import { FooterComponent } from './views/components/layout/footer/footer.compone
 import { LayoutComponent } from './views/components/layout/layout.component';
 import { ExchangeRatesModule } from './views/components/exchange-rates/exchange-rates.module';
 import { HistoricRatesModule } from './views/components/historic-rates/historic-rates.module';
+import { StoreModule } from '@ngrx/store';
+import { appReducers } from './app.reducers';
+import { RatesEffectsArray } from './shared/store/rates-store/effects';
+import { EffectsModule } from '@ngrx/effects';
+import { environment } from 'src/environments/environment';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { HistoricRatesEffectsArray } from './shared/store/historic-rates-store/effects';
 
 const routes: Routes = [
   {
@@ -32,7 +39,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload' }),
     HttpClientModule,
     ReactiveFormsModule,
-    /* StoreModule.forRoot(appReducers, {
+    StoreModule.forRoot(appReducers, {
       runtimeChecks: {
         strictStateImmutability: false,
         strictActionImmutability: false,
@@ -42,8 +49,7 @@ const routes: Routes = [
       maxAge: 25,
       logOnly: environment.production,
     }),
-    EffectsModule.forRoot([...ActivitiesEffectsArray]),
- */
+    EffectsModule.forRoot([...RatesEffectsArray, ...HistoricRatesEffectsArray]),
 
     ExchangeRatesModule,
     HistoricRatesModule,

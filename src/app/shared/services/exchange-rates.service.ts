@@ -12,17 +12,21 @@ export class ExchangeRatesService {
 
   constructor(private http: HttpClient) {}
 
-  getAllLatestRates(base: string): Observable<Rates> {
+  getLatestRates(base: string): Observable<Rates> {
     return this.http.get<Rates>(`${this.latestRatesUrl}base=${base}`);
   }
 
-  getLatestRates(base: string, symbols: string[]): Observable<Rates> {
+  getCurrencyRates(base: string, symbols: string[]): Observable<Rates> {
     return this.http.get<Rates>(
       `${this.latestRatesUrl}base=${base}&symbols=${symbols.toString()}`
     );
   }
 
-  getHistoricRates(base: string, symbols: string[], dates) {
+  getHistoricRates(
+    base: string,
+    symbols: string[],
+    dates: { start: string; end: string }
+  ) {
     return this.http.get<Rates>(
       `${this.historyRatesUrl}start_at=${dates.start}&end_at=${
         dates.end
