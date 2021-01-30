@@ -1,3 +1,4 @@
 <app-currency-selector-overlay *ngIf="overlayVisible"></app-currency-selector-overlay>
+<app-date-selectors (datesChangeEvent)="onDatesChange($event)"></app-date-selectors>
 
 <button (click)="showOverlay()">Add currency</button>

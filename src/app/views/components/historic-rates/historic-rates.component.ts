@@ -16,11 +16,9 @@ export class HistoricRatesComponent implements OnInit {
   public overlayVisible: Boolean;
   public rates: Rates;
   public latestRates: {};
-  public startDate: string = '2018-01-01';
-  public endDate: string = '2019-01-01';
-  public dates = { start: this.startDate, end: this.endDate };
   public base: string = 'GBP';
   public selectedCurrencies: string[];
+  public dates: { start: string; end: string };
 
   constructor(private store: Store<AppState>) {}
   ngOnInit(): void {
@@ -38,6 +36,7 @@ export class HistoricRatesComponent implements OnInit {
     this.store.select('historicRatesApp').subscribe((ratesResponse) => {
       this.rates = ratesResponse.historicRates;
       this.loading = ratesResponse.loading;
+      console.log(this.rates);
     });
   }
 
@@ -58,7 +57,7 @@ export class HistoricRatesComponent implements OnInit {
       this.selectedCurrencies = userCurrency;
       this.base = base;
       if (this.ratesIsEmpty()) this.getLatestRates();
-      this.getHistoricRates();
+      if (this.dates) this.getHistoricRates();
     });
   }
 
@@ -74,6 +73,11 @@ export class HistoricRatesComponent implements OnInit {
 
   getLatestRates() {
     this.store.dispatch(getLatestRates({ base: this.base }));
+  }
+
+  onDatesChange(dates) {
+    this.dates = dates;
+    this.getHistoricRates();
   }
 
   showOverlay() {
