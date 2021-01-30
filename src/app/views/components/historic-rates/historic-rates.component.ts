@@ -5,6 +5,7 @@ import Rates from 'src/app/shared/models/rates.model';
 import { getHistoricRates } from 'src/app/shared/store/historic-rates-store/actions';
 import { overlayVisible } from 'src/app/shared/store/overlay-store/actions';
 import { getLatestRates } from 'src/app/shared/store/rates-store/actions';
+import { removeCurrency } from 'src/app/shared/store/user-currency-store/actions';
 
 @Component({
   selector: 'app-historic-rates',
@@ -14,7 +15,7 @@ import { getLatestRates } from 'src/app/shared/store/rates-store/actions';
 export class HistoricRatesComponent implements OnInit {
   public loading: Boolean = true;
   public overlayVisible: Boolean;
-  public rates: Rates;
+  public rates: {};
   public latestRates: {};
   public base: string = 'GBP';
   public selectedCurrencies: string[];
@@ -26,17 +27,16 @@ export class HistoricRatesComponent implements OnInit {
   }
 
   initStorageSubscriptions() {
+    this.subscribeToHistoricRatesStore();
     this.subscribeToRatesStore();
     this.subscribeToUserCurrencyStore();
-    this.subscribeToHistoricRatesStore();
     this.subscribeToOverlayStore();
   }
 
   subscribeToHistoricRatesStore() {
     this.store.select('historicRatesApp').subscribe((ratesResponse) => {
-      this.rates = ratesResponse.historicRates;
+      this.rates = ratesResponse.historicRates.rates;
       this.loading = ratesResponse.loading;
-      console.log(this.rates);
     });
   }
 
@@ -78,6 +78,10 @@ export class HistoricRatesComponent implements OnInit {
   onDatesChange(dates) {
     this.dates = dates;
     this.getHistoricRates();
+  }
+
+  removeCurrency(rate) {
+    this.store.dispatch(removeCurrency({ currency: rate }));
   }
 
   showOverlay() {
