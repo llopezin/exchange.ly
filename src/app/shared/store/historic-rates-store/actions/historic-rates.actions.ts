@@ -3,7 +3,7 @@ import Rates from '../../../models/rates.model';
 
 //Get Historic Rates
 export const getHistoricRates = createAction(
-  '[RATES] Get Historic Rates',
+  '[HISTORIC RATES] Get Historic Rates',
   props<{
     base: string;
     symbols: string[];
@@ -12,11 +12,11 @@ export const getHistoricRates = createAction(
 );
 
 export const getHistoricRatesSuccess = createAction(
-  '[RATES] Get Historic Rates Success',
+  '[HISTORIC RATES] Get Historic Rates Success',
   props<{ historicRates: Rates }>()
 );
 
 export const getHistoricRatesError = createAction(
-  '[RATES] Get Historic Rates Error',
+  '[HISTORIC RATES] Get Historic Rates Error',
   props<{ payload: any }>()
 );

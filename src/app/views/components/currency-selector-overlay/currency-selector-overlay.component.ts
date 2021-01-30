@@ -1,9 +1,8 @@
 import { Component, OnInit, Output } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { EventEmitter } from '@angular/core';
 import { AppState } from 'src/app/app.reducers';
-import { getLatestRates } from 'src/app/shared/store/rates-store/actions';
+import { addCurrency } from 'src/app/shared/store/user-currency-store/actions';
 
 @Component({
   selector: 'app-currency-selector-overlay',
@@ -16,8 +15,7 @@ export class CurrencySelectorOverlayComponent implements OnInit {
   public loading: Boolean = true;
   public base: string = 'GBP';
   public addCurrenciesForm: FormGroup;
-
-  @Output() addCurrenciesEvent = new EventEmitter();
+  public selectedCurrencies: string[];
 
   get ratesFormArray() {
     return this.addCurrenciesForm.controls.orders as FormArray;
@@ -30,16 +28,21 @@ export class CurrencySelectorOverlayComponent implements OnInit {
 
   ngOnInit(): void {
     this.subscribeToRatesStore();
-    this.store.dispatch(getLatestRates({ base: this.base }));
-    this.buildAddCurrencyForm();
   }
 
   subscribeToRatesStore() {
     this.store.select('ratesApp').subscribe((ratesResponse) => {
       this.rates = ratesResponse.rates.rates;
       this.loading = ratesResponse.loading;
+      this.buildAddCurrencyForm();
       this.createRatesArray();
       this.addCheckboxes();
+    });
+  }
+
+  subscribeToUserCurrencyStore() {
+    this.store.select('userCurrencyApp').subscribe((currencyResponse) => {
+      this.selectedCurrencies = currencyResponse.userCurrency;
     });
   }
 
@@ -64,7 +67,13 @@ export class CurrencySelectorOverlayComponent implements OnInit {
 
   addCheckboxes() {
     for (let rate in this.rates) {
-      this.ratesFormArray.push(new FormControl(false));
+      /**
+       * PLACEHOLDER
+       *
+       * add a conditional based on index that
+       * checks the selected currencies formcontrols
+       */
+      this.ratesFormArray.push(new FormControl(true));
     }
   }
 
@@ -74,9 +83,9 @@ export class CurrencySelectorOverlayComponent implements OnInit {
 
   onSubmit() {
     const checkedCurrencies = this.addCurrenciesForm.value.orders
-      .map((checked, i) => (checked ? this.ratesArray[i] : null))
-      .filter((v) => v !== null);
-    console.log(checkedCurrencies);
-    this.addCurrenciesEvent.emit(checkedCurrencies);
+      .map((checked, i) => (checked ? this.getCurrencyName(i) : null))
+      .filter((rate) => rate !== null);
+
+    this.store.dispatch(addCurrency({ currencies: checkedCurrencies }));
   }
 }

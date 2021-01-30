@@ -16,6 +16,12 @@ export class ExchangeRatesService {
     return this.http.get<Rates>(`${this.latestRatesUrl}base=${base}`);
   }
 
+  getRates(base: string, symbols: string[]): Observable<Rates> {
+    return this.http.get<Rates>(
+      `${this.latestRatesUrl}base=${base}&symbols=${symbols.toString()}`
+    );
+  }
+
   getCurrencyRates(base: string, symbols: string[]): Observable<Rates> {
     return this.http.get<Rates>(
       `${this.latestRatesUrl}base=${base}&symbols=${symbols.toString()}`

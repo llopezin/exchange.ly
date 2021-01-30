@@ -2,9 +2,8 @@ import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ExchangeRatesRoutingModule } from './exchange-rates-routing.module';
-import { CurrencySelectorOverlayComponent } from './currency-selector-overlay/currency-selector-overlay.component';
 import { ExchangeRatesComponent } from './exchange-rates.component';
-
+import { CurrencySelectorOverlayComponent } from '../currency-selector-overlay/currency-selector-overlay.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
