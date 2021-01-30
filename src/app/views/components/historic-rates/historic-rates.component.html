@@ -1,1 +1,3 @@
-<app-currency-selector-overlay></app-currency-selector-overlay>
+<app-currency-selector-overlay *ngIf="overlayVisible"></app-currency-selector-overlay>
+
+<button (click)="showOverlay()">Add currency</button>
