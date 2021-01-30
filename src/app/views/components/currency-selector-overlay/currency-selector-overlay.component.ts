@@ -2,6 +2,7 @@ import { Component, OnInit, Output } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/app.reducers';
+import { overlayVisible } from 'src/app/shared/store/overlay-store/actions';
 import { addCurrency } from 'src/app/shared/store/user-currency-store/actions';
 
 @Component({
@@ -27,7 +28,9 @@ export class CurrencySelectorOverlayComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.subscribeToUserCurrencyStore();
     this.subscribeToRatesStore();
+    // this.subscribeToOverlayStore();
   }
 
   subscribeToRatesStore() {
@@ -45,6 +48,12 @@ export class CurrencySelectorOverlayComponent implements OnInit {
       this.selectedCurrencies = currencyResponse.userCurrency;
     });
   }
+
+  /*   subscribeToOverlayStore() {
+    this.store.select('overlayApp').subscribe((overlayResponse) => {
+      this.overlayVisible = overlayResponse.visible;
+    });
+  } */
 
   buildAddCurrencyForm() {
     this.addCurrenciesForm = this.formBuilder.group({
@@ -67,13 +76,9 @@ export class CurrencySelectorOverlayComponent implements OnInit {
 
   addCheckboxes() {
     for (let rate in this.rates) {
-      /**
-       * PLACEHOLDER
-       *
-       * add a conditional based on index that
-       * checks the selected currencies formcontrols
-       */
-      this.ratesFormArray.push(new FormControl(true));
+      this.selectedCurrencies.includes(rate)
+        ? this.ratesFormArray.push(new FormControl(true))
+        : this.ratesFormArray.push(new FormControl(false));
     }
   }
 
@@ -82,10 +87,19 @@ export class CurrencySelectorOverlayComponent implements OnInit {
   }
 
   onSubmit() {
+    this.addSelected();
+    this.hideOverlay();
+  }
+
+  addSelected() {
     const checkedCurrencies = this.addCurrenciesForm.value.orders
       .map((checked, i) => (checked ? this.getCurrencyName(i) : null))
       .filter((rate) => rate !== null);
 
     this.store.dispatch(addCurrency({ currencies: checkedCurrencies }));
+  }
+
+  hideOverlay() {
+    this.store.dispatch(overlayVisible({ visible: false }));
   }
 }

@@ -9,6 +9,15 @@
 
 <div>
     <h1>Currencies</h1>
+
+    <div id="loader" *ngIf="loading" role="alert" aria-busy="true">
+        <!-- Empty spans added for styling purposes -->
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
     <div *ngFor="let rate of displayedRates">
         <div *ngFor="let item of rate | keyvalue">
             <b>{{item.key}}</b> <b>{{item.value}}</b>

@@ -17,7 +17,7 @@ const _userCurrencyReducer = createReducer(
   on(addCurrency, (state, { currencies }) => {
     return {
       ...state,
-      userCurrency: [...new Set([...state.userCurrency, ...currencies])],
+      userCurrency: currencies,
     };
   }),
 

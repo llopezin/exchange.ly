@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { logging } from 'protractor';
 import { AppState } from 'src/app/app.reducers';
-import Rates from 'src/app/shared/models/rates.model';
 import { overlayVisible } from 'src/app/shared/store/overlay-store/actions';
 import { getLatestRates } from 'src/app/shared/store/rates-store/actions';
+import { addCurrency } from 'src/app/shared/store/user-currency-store/actions';
 
 @Component({
   selector: 'app-exchange-rates',
@@ -12,7 +11,7 @@ import { getLatestRates } from 'src/app/shared/store/rates-store/actions';
   styleUrls: ['./exchange-rates.component.scss'],
 })
 export class ExchangeRatesComponent implements OnInit {
-  public loading: Boolean;
+  public loading: Boolean = true;
   public overlayVisible: Boolean;
   public defaultBase: string = 'GBP';
   public base: string = this.defaultBase;
@@ -25,10 +24,19 @@ export class ExchangeRatesComponent implements OnInit {
   constructor(private store: Store<AppState>) {}
 
   ngOnInit(): void {
+    this.setUserCurrencies();
+    this.initStorageSubscriptions();
+    this.getLatestRates();
+  }
+
+  setUserCurrencies() {
+    this.store.dispatch(addCurrency({ currencies: this.selectedCurrencies }));
+  }
+
+  initStorageSubscriptions() {
     this.subscribeToOverlayStore();
     this.subscribeToRatesStore();
     this.subscribeToUserCurrencyStore();
-    this.getLatestRates();
   }
 
   subscribeToOverlayStore() {
@@ -41,15 +49,20 @@ export class ExchangeRatesComponent implements OnInit {
     this.store.select('ratesApp').subscribe((ratesResponse) => {
       this.latestRates = ratesResponse.rates.rates;
       this.loading = ratesResponse.loading;
-      this.createRatesArray();
-      this.displaySelectedCurrencyRates();
+      this.renderRates();
     });
   }
 
   subscribeToUserCurrencyStore() {
     this.store.select('userCurrencyApp').subscribe((currencyResponse) => {
       this.selectedCurrencies = currencyResponse.userCurrency;
+      this.renderRates();
     });
+  }
+
+  renderRates() {
+    this.setRatesArray();
+    this.displaySelectedCurrencyRates();
   }
 
   displaySelectedCurrencyRates() {
@@ -60,7 +73,7 @@ export class ExchangeRatesComponent implements OnInit {
     });
   }
 
-  createRatesArray() {
+  setRatesArray() {
     const rates = [];
 
     for (let rate in this.latestRates) {

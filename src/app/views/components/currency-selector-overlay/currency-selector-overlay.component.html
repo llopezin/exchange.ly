@@ -4,7 +4,8 @@
 
         <form action="post" [formGroup]="addCurrenciesForm" (ngSubmit)="onSubmit()">
 
-            <div id="loader">
+            <div id="loader" *ngIf="loading" role="alert" aria-busy="true">
+                <!-- Empty spans added for styling purposes -->
                 <span></span>
                 <span></span>
                 <span></span>
