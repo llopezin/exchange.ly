@@ -14,7 +14,7 @@ export class CurrencySelectorOverlayComponent implements OnInit {
   public rates: {};
   public ratesArray: {}[];
   public loading: Boolean = true;
-  public base: string = 'GBP';
+  public base: string;
   public addCurrenciesForm: FormGroup;
   public selectedCurrencies: string[];
 
@@ -43,8 +43,8 @@ export class CurrencySelectorOverlayComponent implements OnInit {
   }
 
   subscribeToUserCurrencyStore() {
-    this.store.select('userCurrencyApp').subscribe((currencyResponse) => {
-      this.selectedCurrencies = currencyResponse.userCurrency;
+    this.store.select('userCurrencyApp').subscribe(({ userCurrency }) => {
+      this.selectedCurrencies = userCurrency;
     });
   }
 

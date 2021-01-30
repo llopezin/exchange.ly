@@ -19,7 +19,7 @@ export class ExchangeRatesComponent implements OnInit {
   public loading: Boolean = true;
   public overlayVisible: Boolean;
   public defaultBase: string = 'GBP';
-  public base: string = this.defaultBase;
+  public base: string;
   public quantity: number;
   public latestRates: {};
   public latestRatesArray: {}[];
@@ -54,8 +54,9 @@ export class ExchangeRatesComponent implements OnInit {
   }
 
   subscribeToUserCurrencyStore() {
-    this.store.select('userCurrencyApp').subscribe(({ userCurrency }) => {
+    this.store.select('userCurrencyApp').subscribe(({ userCurrency, base }) => {
       this.selectedCurrencies = userCurrency;
+      this.base = base;
       this.renderRates();
     });
   }
@@ -87,8 +88,6 @@ export class ExchangeRatesComponent implements OnInit {
   }
 
   removeRate(rate) {
-    console.log(rate);
-
     this.store.dispatch(removeCurrency({ currency: rate }));
   }
 

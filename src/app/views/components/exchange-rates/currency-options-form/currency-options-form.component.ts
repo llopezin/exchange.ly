@@ -5,6 +5,8 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/app.reducers';
 
 @Component({
   selector: 'app-currency-options-form',
@@ -16,21 +18,31 @@ export class CurrencyOptionsFormComponent implements OnInit {
   public currencyOptionsForm: FormGroup;
   public baseSelector: FormControl;
   public quantitySelector: FormControl;
-  public defaultBase: string = 'GBP';
+  public base: string;
 
   @Input() public rates;
   @Output() public baseEvent = new EventEmitter();
   @Output() public quantityEvent = new EventEmitter();
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private store: Store<AppState>
+  ) {}
 
   ngOnInit(): void {
-    this.buildCurrencyOptionsForm();
+    this.subscribeToUserCurrencyStore();
+  }
+
+  subscribeToUserCurrencyStore() {
+    this.store.select('userCurrencyApp').subscribe(({ base }) => {
+      this.base = base;
+      this.buildCurrencyOptionsForm();
+    });
   }
 
   buildCurrencyOptionsForm() {
     this.quantitySelector = new FormControl('1', [Validators.min(0)]);
-    this.baseSelector = new FormControl(this.defaultBase, [Validators.min(0)]);
+    this.baseSelector = new FormControl(this.base, [Validators.min(0)]);
     this.currencyOptionsForm = this.formBuilder.group({
       baseSelector: this.baseSelector,
       quantitySelector: this.quantitySelector,

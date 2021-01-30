@@ -7,7 +7,7 @@ export interface UserCurrencyState {
 }
 
 export const initialState: UserCurrencyState = {
-  base: '',
+  base: 'GBP',
   userCurrency: ['EUR', 'USD', 'SGD'],
 };
 
