@@ -1,0 +1,16 @@
+<form action="post" [formGroup]="currencyOptionsForm" (ngSubmit)="onSubmit()">
+
+    <label for="quantity-selector">quantity</label>
+    <input type="number" name="quantitySelector" id="quantity-selector" min="0" formControlName="quantitySelector">
+
+
+    <label for="base-selector">base</label>
+    <select name="baseSelector" id="base-selector" formControlName="baseSelector">
+        <option [value]="rate.key" *ngFor="let rate of rates | keyvalue">
+            {{rate.key}}
+        </option>
+    </select>
+
+    <button [disabled]="currencyOptionsForm.pristine">Change</button>
+
+</form>

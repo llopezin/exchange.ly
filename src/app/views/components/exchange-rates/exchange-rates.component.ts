@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/app.reducers';
 import { overlayVisible } from 'src/app/shared/store/overlay-store/actions';
 import { getLatestRates } from 'src/app/shared/store/rates-store/actions';
 import {
   addCurrency,
+  changeBase,
   removeCurrency,
 } from 'src/app/shared/store/user-currency-store/actions';
 
@@ -18,6 +20,7 @@ export class ExchangeRatesComponent implements OnInit {
   public overlayVisible: Boolean;
   public defaultBase: string = 'GBP';
   public base: string = this.defaultBase;
+  public quantity: number;
   public latestRates: {};
   public latestRatesArray: {}[];
   public selectedCurrencies: string[];
@@ -87,6 +90,17 @@ export class ExchangeRatesComponent implements OnInit {
     console.log(rate);
 
     this.store.dispatch(removeCurrency({ currency: rate }));
+  }
+
+  changeBase(base) {
+    this.base = base;
+    this.store.dispatch(changeBase({ base: base }));
+    this.getLatestRates();
+    this.renderRates();
+  }
+
+  changeQuantity(quantity) {
+    this.quantity = quantity;
   }
 
   showOverlay() {

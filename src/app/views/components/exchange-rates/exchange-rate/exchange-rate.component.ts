@@ -8,6 +8,7 @@ import { EventEmitter } from '@angular/core';
 })
 export class ExchangeRateComponent implements OnInit {
   @Input() public rate;
+  @Input() public quantity;
   @Output() public removeRateEvent = new EventEmitter();
 
   constructor() {}
@@ -16,5 +17,11 @@ export class ExchangeRateComponent implements OnInit {
 
   removeRate(rate) {
     this.removeRateEvent.emit(rate);
+  }
+
+  setValue(rateValue) {
+    let quantity = this.quantity || 1;
+    let value = rateValue * quantity;
+    return Math.round((value + Number.EPSILON) * 100) / 100;
   }
 }

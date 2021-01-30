@@ -1,5 +1,5 @@
 <div *ngFor="let data of rate | keyvalue">
     <h3>{{data.key}}</h3>
-    <p>{{data.value}}</p>
+    <p>{{setValue(data.value)}}</p>
     <button (click)="removeRate(data.key)">Close</button>
 </div>
