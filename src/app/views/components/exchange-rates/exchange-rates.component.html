@@ -3,5 +3,15 @@
 <button (click)="showOverlay()">Add currency</button>
 
 <div *ngIf="overlayVisible">
-    <app-currency-selector-overlay></app-currency-selector-overlay>
+    <app-currency-selector-overlay (addCurrenciesEvent)="recieveAddCurrenciesEvent($event)">
+    </app-currency-selector-overlay>
+</div>
+
+<div>
+    <h1>Currencies</h1>
+    <div *ngFor="let currency of currencies">
+        <div *ngFor="let item of currency | keyvalue">
+            <b>{{item.key}}</b> <b>{{item.value}}</b>
+        </div>
+    </div>
 </div>

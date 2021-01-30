@@ -41,6 +41,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload' }),
     HttpClientModule,
     ReactiveFormsModule,
+
     StoreModule.forRoot(appReducers, {
       runtimeChecks: {
         strictStateImmutability: false,

@@ -9,6 +9,7 @@ import { AppState } from 'src/app/app.reducers';
 })
 export class ExchangeRatesComponent implements OnInit {
   public overlayVisible: Boolean = false;
+  public currencies: {}[] = [];
 
   constructor(private store: Store<AppState>) {}
 
@@ -20,5 +21,15 @@ export class ExchangeRatesComponent implements OnInit {
 
   hideOverlay() {
     this.overlayVisible = false;
+  }
+
+  recieveAddCurrenciesEvent(currencies) {
+    this.addCurrencies(currencies);
+    this.hideOverlay();
+  }
+
+  addCurrencies(currencies) {
+    this.currencies = [...this.currencies, ...currencies];
+    console.log('currencies:', this.currencies);
   }
 }
