@@ -8,7 +8,7 @@ export const addCurrency = createAction(
 
 export const removeCurrency = createAction(
   '[USER CURRENCY] Remove Currency',
-  props<{ currencies: string[] }>()
+  props<{ currency: string }>()
 );
 
 export const changeBase = createAction(

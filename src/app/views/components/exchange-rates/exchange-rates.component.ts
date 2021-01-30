@@ -3,7 +3,10 @@ import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/app.reducers';
 import { overlayVisible } from 'src/app/shared/store/overlay-store/actions';
 import { getLatestRates } from 'src/app/shared/store/rates-store/actions';
-import { addCurrency } from 'src/app/shared/store/user-currency-store/actions';
+import {
+  addCurrency,
+  removeCurrency,
+} from 'src/app/shared/store/user-currency-store/actions';
 
 @Component({
   selector: 'app-exchange-rates',
@@ -17,20 +20,14 @@ export class ExchangeRatesComponent implements OnInit {
   public base: string = this.defaultBase;
   public latestRates: {};
   public latestRatesArray: {}[];
-  public defaultCurrencies: string[] = ['EUR', 'USD', 'SGD'];
-  public selectedCurrencies: string[] = this.defaultCurrencies;
+  public selectedCurrencies: string[];
   public displayedRates: {}[];
 
   constructor(private store: Store<AppState>) {}
 
   ngOnInit(): void {
-    this.setUserCurrencies();
     this.initStorageSubscriptions();
-    this.getLatestRates();
-  }
-
-  setUserCurrencies() {
-    this.store.dispatch(addCurrency({ currencies: this.selectedCurrencies }));
+    if (!this.latestRates) this.getLatestRates();
   }
 
   initStorageSubscriptions() {
@@ -54,8 +51,8 @@ export class ExchangeRatesComponent implements OnInit {
   }
 
   subscribeToUserCurrencyStore() {
-    this.store.select('userCurrencyApp').subscribe((currencyResponse) => {
-      this.selectedCurrencies = currencyResponse.userCurrency;
+    this.store.select('userCurrencyApp').subscribe(({ userCurrency }) => {
+      this.selectedCurrencies = userCurrency;
       this.renderRates();
     });
   }
@@ -68,25 +65,28 @@ export class ExchangeRatesComponent implements OnInit {
   displaySelectedCurrencyRates() {
     this.displayedRates = this.latestRatesArray.filter((rate) => {
       let currencyName = Object.keys(rate)[0];
-
-      return this.selectedCurrencies.includes(currencyName);
+      return this.selectedCurrencies?.includes(currencyName);
     });
   }
 
   setRatesArray() {
     const rates = [];
-
     for (let rate in this.latestRates) {
       const rateObj = {};
       rateObj[rate] = this.latestRates[rate];
       rates.push(rateObj);
     }
-
     this.latestRatesArray = rates;
   }
 
   getLatestRates() {
     this.store.dispatch(getLatestRates({ base: this.base }));
+  }
+
+  removeRate(rate) {
+    console.log(rate);
+
+    this.store.dispatch(removeCurrency({ currency: rate }));
   }
 
   showOverlay() {

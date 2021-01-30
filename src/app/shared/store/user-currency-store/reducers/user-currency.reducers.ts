@@ -8,7 +8,7 @@ export interface UserCurrencyState {
 
 export const initialState: UserCurrencyState = {
   base: '',
-  userCurrency: [],
+  userCurrency: ['EUR', 'USD', 'SGD'],
 };
 
 const _userCurrencyReducer = createReducer(
@@ -21,10 +21,10 @@ const _userCurrencyReducer = createReducer(
     };
   }),
 
-  on(removeCurrency, (state, { currencies }) => ({
+  on(removeCurrency, (state, { currency }) => ({
     ...state,
     userCurrency: state.userCurrency.filter(
-      (currency) => !currencies.includes(currency)
+      (currencyName) => currencyName !== currency
     ),
   })),
 

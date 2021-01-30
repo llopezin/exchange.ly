@@ -18,9 +18,7 @@
         <span></span>
     </div>
 
-    <div *ngFor="let rate of displayedRates">
-        <div *ngFor="let item of rate | keyvalue">
-            <b>{{item.key}}</b> <b>{{item.value}}</b>
-        </div>
-    </div>
+    <app-exchange-rate [rate]="rates" *ngFor="let rates of displayedRates" (removeRateEvent)="removeRate($event)">
+    </app-exchange-rate>
+
 </div>

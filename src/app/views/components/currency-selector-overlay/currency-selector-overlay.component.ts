@@ -30,7 +30,6 @@ export class CurrencySelectorOverlayComponent implements OnInit {
   ngOnInit(): void {
     this.subscribeToUserCurrencyStore();
     this.subscribeToRatesStore();
-    // this.subscribeToOverlayStore();
   }
 
   subscribeToRatesStore() {
@@ -48,12 +47,6 @@ export class CurrencySelectorOverlayComponent implements OnInit {
       this.selectedCurrencies = currencyResponse.userCurrency;
     });
   }
-
-  /*   subscribeToOverlayStore() {
-    this.store.select('overlayApp').subscribe((overlayResponse) => {
-      this.overlayVisible = overlayResponse.visible;
-    });
-  } */
 
   buildAddCurrencyForm() {
     this.addCurrenciesForm = this.formBuilder.group({
