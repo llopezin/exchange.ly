@@ -36,6 +36,8 @@ export class DateSelectorsComponent implements OnInit {
 
   onSubmit() {
     this.setFormValues();
+    console.log('submiting');
+
     this.datesChangeEvent.emit(this.dates);
   }
 
