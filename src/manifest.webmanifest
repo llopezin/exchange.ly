@@ -1,6 +1,6 @@
 {
-  "name": "my-app",
-  "short_name": "my-app",
+  "name": "exchange-ly",
+  "short_name": "x.ly",
   "theme_color": "#1976d2",
   "background_color": "#fafafa",
   "display": "standalone",
