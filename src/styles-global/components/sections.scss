@@ -1,0 +1,13 @@
+section {
+  width: 90%;
+  margin: auto;
+}
+
+@media (min-width: $md) {
+  section {
+    max-width: 992px;
+    margin: auto;
+    margin-top: 35px;
+    margin-bottom: 35px;
+  }
+}

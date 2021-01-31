@@ -11,7 +11,7 @@ import { AppState } from 'src/app/app.reducers';
 @Component({
   selector: 'app-currency-options-form',
   templateUrl: './currency-options-form.component.html',
-  styleUrls: ['./currency-options-form.component.sass'],
+  styleUrls: ['./currency-options-form.component.scss'],
 })
 export class CurrencyOptionsFormComponent implements OnInit {
   public latestRates: {};

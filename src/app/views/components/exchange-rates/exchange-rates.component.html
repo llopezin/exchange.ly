@@ -1,6 +1,3 @@
-<p>exchange-rates works</p>
-
-
 <div *ngIf="overlayVisible">
     <app-currency-selector-overlay *ngIf="overlayVisible">
     </app-currency-selector-overlay>
@@ -8,10 +5,11 @@
 
 <section>
 
+    <h1>Currencies</h1>
+
     <app-currency-options-form [rates]="latestRates" (baseEvent)="changeBase($event)"
         (quantityEvent)="changeQuantity($event)"></app-currency-options-form>
 
-    <h1>Currencies</h1>
 
     <div id="loader" *ngIf="loading" role="alert" aria-busy="true">
         <!-- Empty spans added for styling purposes -->
@@ -21,9 +19,12 @@
         <span></span>
     </div>
 
-    <app-exchange-rate [rate]="rates" [quantity]="quantity" *ngFor="let rates of displayedRates"
-        (removeRateEvent)="removeRate($event)">
-    </app-exchange-rate>
+
+    <div *ngIf="!loading">
+        <app-exchange-rate [rate]="rates" [quantity]="quantity" *ngFor="let rates of displayedRates"
+            (removeRateEvent)="removeRate($event)">
+        </app-exchange-rate>
+    </div>
 
     <button (click)="showOverlay()">Add currency</button>
 

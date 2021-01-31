@@ -18,18 +18,18 @@
 }
 
 #loader span:nth-child(1) {
-  background: #2ecc71;
+  background: $blue;
 }
 
 #loader span:nth-child(2) {
   left: 22px;
-  background: #9b59b6;
+  background: $pink;
   animation-delay: 0.2s;
 }
 
 #loader span:nth-child(3) {
   top: 22px;
-  background: #3498db;
+  background: $light-blue;
   animation-delay: 0.4s;
 }
 

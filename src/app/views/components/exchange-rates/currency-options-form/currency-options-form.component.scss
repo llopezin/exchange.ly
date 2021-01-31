@@ -1,0 +1,72 @@
+@import "../../../../../styles-global/base-colors.scss";
+@import "../../../../../styles-global/breakpoints.scss";
+
+form {
+  position: relative;
+  background-color: white;
+  max-width: 400px;
+  min-width: 300px;
+  margin: auto;
+  padding: 10px;
+  text-align: center;
+  border-radius: 4px;
+}
+
+@media (min-width: $md) {
+  form {
+    max-width: 50%;
+    min-width: 300px;
+  }
+}
+
+button {
+  width: 22%;
+  padding: 10px 6px;
+
+  /*   font-size: 0; */
+  background-color: $font;
+  color: white;
+  border: none;
+  text-align: center;
+  margin-left: 5px;
+}
+
+/* button::before {
+  content: " ";
+  font-size: larger;
+  width: 15px;
+  height: 15px;
+  border-left: solid 15px rgb(200, 15, 50);
+  border-top: solid 15px transparent;
+  border-bottom: solid 15px transparent;
+} */
+
+input,
+select {
+  padding: 10px;
+  margin-right: 5px;
+  font-weight: bold;
+  border: none;
+  border-bottom: solid 1px $blue;
+}
+
+#base-selector {
+  width: 40%;
+  color: $font;
+  cursor: pointer;
+}
+
+#quantity-selector {
+  width: 25%;
+  color: $font-dark;
+}
+
+option {
+  padding: 10px;
+}
+
+#quantity-selector::-webkit-inner-spin-button,
+#quantity-selector::-webkit-outer-spin-button {
+  opacity: 1;
+  cursor: pointer;
+}

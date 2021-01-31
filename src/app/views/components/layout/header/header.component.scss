@@ -16,19 +16,26 @@ header {
 }
 
 picture {
-  max-width: 35%;
+  width: 45%;
 }
 
 .logo {
   width: 100%;
-  max-width: 400px;
+  max-width: 200px;
   margin: auto;
+}
+
+@media (min-width: $md) {
+  .logo {
+    max-width: 400px;
+  }
 }
 
 .menu-button {
   position: absolute;
   border: none;
-  right: 20px;
+  padding-top: 8px;
+  right: 24px;
 }
 
 .menu-button__path {
@@ -58,6 +65,12 @@ picture {
   #main-navigation {
     width: 65%;
     margin-top: 8px;
+    background-color: white;
+  }
+
+  #main-navigation.visible {
+    max-height: none;
+    transition: none;
   }
 
   #main-navigation::after {
@@ -68,45 +81,40 @@ picture {
     width: 90%;
     margin-left: 5%;
     z-index: -1;
-    border-bottom: solid 2px $font;
+    border-bottom: solid 3px $font;
     opacity: 0.4;
   }
 }
 
 .main-navigation__list {
   padding: 0;
+  margin: 0;
 }
 
 .main-navigation__list-item {
   display: block;
   font-size: large;
-  text-align: center;
 }
 
 @media (min-width: $md) {
   .main-navigation__list-item {
     display: inline-block;
+    font-size: larger;
     width: 50%;
   }
 }
 
 .main-navigation__link {
   display: inline-block;
-  padding: 10px 0px;
+  width: 90%;
+  padding: 20px 5%;
+
   color: white;
+  border-top: solid 1px white;
 }
 
 .main-navigation__link.active {
   position: relative;
-}
-
-.main-navigation__link.active::after {
-  content: "";
-  position: absolute;
-  bottom: 9px;
-  left: 0;
-  width: 100%;
-  border-bottom: 2px dotted white;
 }
 
 @media (min-width: $md) {
@@ -114,7 +122,11 @@ picture {
     color: $font;
   }
 
-  .main-navigation__link.active::after {
-    border-bottom: 2px dotted $font;
+  .main-navigation__link:not(.active) {
+    color: gray;
+  }
+
+  .main-navigation__link:not(.active):hover {
+    color: $font;
   }
 }
