@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/app.reducers';
 import { overlayVisible } from 'src/app/shared/store/overlay-store/actions';
 import { getLatestRates } from 'src/app/shared/store/rates-store/actions';
 import {
-  addCurrency,
   changeBase,
   removeCurrency,
 } from 'src/app/shared/store/user-currency-store/actions';

@@ -2,24 +2,24 @@
     <div class="currency-select-overlay">
 
 
-        <form action="post" [formGroup]="addCurrenciesForm" (ngSubmit)="onSubmit()">
+        <section class="form-wrap">
 
-            <div id="loader" *ngIf="loading" role="alert" aria-busy="true">
-                <!-- Empty spans added for styling purposes -->
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
+            <h3>Currencies</h3>
 
-            <label formArrayName="orders" *ngFor="let rate of ratesFormArray.controls; let i = index">
-                <input type="checkbox" [formControlName]="i">
-                {{getCurrencyName(i)}}
-            </label>
+            <button class="close-button" (click)="hideOverlay()"><span class="sr-only">Close</span></button>
 
-            <button type="submit">Add</button>
+            <form action="post" [formGroup]="addCurrenciesForm" (ngSubmit)="onSubmit()">
 
-        </form>
+                <label formArrayName="orders" *ngFor="let rate of ratesFormArray.controls; let i = index">
+                    <input type="checkbox" [formControlName]="i">
+                    {{getCurrencyName(i)}}
+                </label>
+
+                <button class="add-button" type="submit">Add</button>
+
+            </form>
+
+        </section>
 
 
     </div>

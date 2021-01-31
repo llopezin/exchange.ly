@@ -1,22 +1,86 @@
+@import "../../../../styles-global/base-colors.scss";
+@import "../../../../styles-global/breakpoints";
+
 .currency-select-overlay__wrap {
+  position: absolute;
+  display: flex;
+  top: 0;
+  justify-content: center;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(84, 83, 83, 0.6);
-  display: flex;
-  justify-content: center;
-  position: absolute;
-  top: 0;
+  background-color: rgba(84, 83, 83, 0.7);
+  z-index: 10;
+  animation: fadeIn 0.3s;
 }
 
-.currency-select-overlay form {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+h3 {
+  font-size: medium;
+}
+
+.form-wrap {
+  position: relative;
   padding: 20px;
   background-color: white;
   opacity: 1;
-  border: solid 1px cadetblue;
+  border-radius: 8px;
 }
 
-input {
-  display: inline;
+form {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  column-gap: 5px;
+  padding-top: 20px;
+  border-top: solid 3px $font;
+}
+
+@media (min-width: $md) {
+  form {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    column-gap: 5px;
+  }
+}
+
+button.close-button {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  padding-bottom: 0;
+}
+
+button.close-button::after {
+  font-size: x-large;
+}
+
+label {
+  padding-top: 5px;
+  display: inline-block;
+}
+
+@media (min-width: $md) {
+  label {
+    min-width: 100px;
+  }
+}
+
+.add-button {
+  grid-column: 1/4;
+  margin-top: 20px;
+  background-color: $font;
+  color: white;
+}
+
+@media (min-width: $md) {
+  .add-button {
+    margin-top: 35px;
+    grid-column: 2/5;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
