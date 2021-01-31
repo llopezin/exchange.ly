@@ -7,7 +7,7 @@ import Dataset from 'src/app/shared/models/chart-dataset.model';
 @Component({
   selector: 'app-hitoric-rates-chart',
   templateUrl: './hitoric-rates-chart.component.html',
-  styleUrls: ['./hitoric-rates-chart.component.sass'],
+  styleUrls: ['./hitoric-rates-chart.component.scss'],
 })
 export class HitoricRatesChartComponent implements OnInit {
   public chart;
@@ -28,10 +28,7 @@ export class HitoricRatesChartComponent implements OnInit {
       this.rates = ratesResponse.historicRates.rates;
       this.loading = ratesResponse.loading;
       this.prepareData();
-
       this.createDataSets();
-      console.log(this.rates);
-
       this.createChart(this.datasets);
     });
   }

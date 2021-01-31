@@ -1,20 +1,6 @@
 @import "../../../../styles-global/base-colors.scss";
 @import "../../../../styles-global/breakpoints.scss";
 
-section {
-  position: relative;
-  background: rgb(255, 210, 223);
-  background: linear-gradient(
-    156deg,
-    rgba(255, 210, 223, 1) 0%,
-    rgba(124, 122, 153, 1) 35%,
-    rgba(72, 87, 125, 1) 57%
-  );
-  padding: 20px;
-  padding-top: 5px;
-  border-radius: 40px;
-}
-
 #loader {
   margin: auto;
   margin-top: 30px;

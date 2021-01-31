@@ -1,5 +1,14 @@
-<h1>My chart</h1>
+<div class="chart-wrap">
 
-<div>
+    <h1>Historic rates</h1>
+
+    <div id="loader" *ngIf="loading" role="alert" aria-busy="true">
+        <!-- Empty spans added for styling purposes -->
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
     <canvas id="history-comparison-chart"></canvas>
 </div>

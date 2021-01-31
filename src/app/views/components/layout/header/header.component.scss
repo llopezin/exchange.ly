@@ -52,13 +52,14 @@ picture {
   margin-top: 20px;
   background-color: $font;
   max-height: 0;
+  margin-bottom: 30px;
+  overflow: hidden;
   transition: max-height 1s;
 }
 
 #main-navigation.visible {
   max-height: 200px;
   transition: max-height 1s;
-  margin-bottom: 30px;
 }
 
 @media (min-width: $md) {
@@ -108,7 +109,6 @@ picture {
   display: inline-block;
   width: 90%;
   padding: 20px 5%;
-
   color: white;
   border-top: solid 1px white;
 }
