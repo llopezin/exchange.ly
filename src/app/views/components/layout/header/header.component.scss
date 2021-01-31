@@ -123,11 +123,15 @@ picture {
     color: $font;
   }
 
+  .main-navigation__link.active {
+    color: #5c28c4;
+  }
+
   .main-navigation__link:not(.active) {
     color: gray;
   }
 
   .main-navigation__link:not(.active):hover {
-    color: $font;
+    color: #5c28c4;
   }
 }
