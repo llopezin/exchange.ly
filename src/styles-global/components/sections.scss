@@ -23,5 +23,10 @@ section {
   );
   padding: 20px;
   padding-top: 5px;
-  border-radius: 40px;
+}
+
+@media (min-width: $md) {
+  .section__primary {
+    border-radius: 40px;
+  }
 }
