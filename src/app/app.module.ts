@@ -19,6 +19,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { environment } from 'src/environments/environment';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { HistoricRatesEffectsArray } from './shared/store/historic-rates-store/effects';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 const routes: Routes = [
   {
@@ -37,8 +38,8 @@ const routes: Routes = [
   ],
   imports: [
     CommonModule,
-    BrowserModule,
-    RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload' }),
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
+    RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload', initialNavigation: 'enabled' }),
     HttpClientModule,
     ReactiveFormsModule,
 
@@ -56,6 +57,7 @@ const routes: Routes = [
 
     ExchangeRatesModule,
     HistoricRatesModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
   providers: [],
   bootstrap: [AppComponent],

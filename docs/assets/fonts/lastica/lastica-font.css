@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'Lastica';
+    src: url('Lastica.woff2') format('woff2'),
+        url('Lastica.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+

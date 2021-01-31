@@ -70,8 +70,6 @@ export class HitoricRatesChartComponent implements OnInit {
   }
 
   createChart(datasets) {
-    console.log(datasets);
-
     this.chart?.destroy();
     this.chart = new Chart('history-comparison-chart', {
       type: 'line',
