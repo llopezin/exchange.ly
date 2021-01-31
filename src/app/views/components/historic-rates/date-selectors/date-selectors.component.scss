@@ -1,0 +1,50 @@
+@import "../../../../../styles-global/base-colors.scss";
+@import "../../../../../styles-global/breakpoints.scss";
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 30px auto;
+}
+
+@media (min-width: $md) {
+  form {
+    flex-direction: row;
+    justify-content: center;
+    max-width: 700px;
+  }
+}
+
+input {
+  display: block;
+  padding: 10px;
+  margin: auto;
+  margin-bottom: 8px;
+  width: 200px;
+  border: none;
+  border-bottom: solid 2px $font;
+  border-radius: 4px;
+}
+
+button {
+  background-color: $blue;
+  color: white;
+  width: 220px;
+  border-radius: 4px;
+  margin: auto;
+  margin-top: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: $light-blue;
+  color: $blue;
+  border: none;
+}
+
+@media (min-width: $md) {
+  button {
+    margin-top: 0;
+  }
+}

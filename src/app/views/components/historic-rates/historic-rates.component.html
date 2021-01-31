@@ -3,15 +3,15 @@
 <section class="section__primary">
     <app-date-selectors (datesChangeEvent)="onDatesChange($event)"></app-date-selectors>
 
-    <div>
-        <div *ngFor="let currency of selectedCurrencies">
+    <div class="lozenges-wrap">
+        <div class="lozenge" *ngFor="let currency of selectedCurrencies">
             <span>
                 {{currency}}
             </span>
             <button class="close-button" (click)="removeCurrency(currency)"><span class="sr-only">Close</span></button>
         </div>
 
-        <button (click)="showOverlay()">Add currency</button>
+        <button class="lozenge add-button" (click)="showOverlay()">Add</button>
     </div>
 
     <app-hitoric-rates-chart></app-hitoric-rates-chart>

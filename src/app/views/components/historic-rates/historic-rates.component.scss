@@ -1,1 +1,43 @@
+@import "../../../../styles-global/base-colors.scss";
 
+.lozenges-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 20px auto;
+}
+
+.lozenge {
+  background-color: white;
+  opacity: 1;
+  padding: 0 10px;
+  height: 30px;
+  margin-right: 5px;
+  margin-bottom: 10px;
+  min-width: 45px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid $blue;
+  border-radius: 20px;
+}
+
+.add-button {
+  min-width: 70px;
+  background-color: $blue;
+  color: white;
+  display: flex;
+  justify-content: center;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.add-button:hover {
+  background-color: $light-blue;
+  color: $blue;
+  border: none;
+}
+
+button.close-button {
+  padding: 0 0 0 8px;
+}

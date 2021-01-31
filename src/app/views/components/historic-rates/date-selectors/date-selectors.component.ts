@@ -4,7 +4,7 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 @Component({
   selector: 'app-date-selectors',
   templateUrl: './date-selectors.component.html',
-  styleUrls: ['./date-selectors.component.sass'],
+  styleUrls: ['./date-selectors.component.scss'],
 })
 export class DateSelectorsComponent implements OnInit {
   public dateObj: Date = new Date();
