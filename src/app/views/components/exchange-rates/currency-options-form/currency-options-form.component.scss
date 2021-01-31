@@ -22,24 +22,13 @@ form {
 button {
   width: 22%;
   padding: 10px 6px;
-
-  /*   font-size: 0; */
-  background-color: $font;
+  background-color: $blue;
   color: white;
   border: none;
   text-align: center;
   margin-left: 5px;
+  cursor: pointer;
 }
-
-/* button::before {
-  content: " ";
-  font-size: larger;
-  width: 15px;
-  height: 15px;
-  border-left: solid 15px rgb(200, 15, 50);
-  border-top: solid 15px transparent;
-  border-bottom: solid 15px transparent;
-} */
 
 input,
 select {

@@ -1,5 +1,14 @@
 @import "../../../../styles-global/base-colors.scss";
 
+h1 {
+  text-align: center;
+  width: 300px;
+  padding: 16px;
+  background-color: white;
+  border-radius: 40px;
+  border-bottom: solid 2px $blue;
+}
+
 .lozenges-wrap {
   display: flex;
   flex-wrap: wrap;

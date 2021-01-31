@@ -1,0 +1,28 @@
+footer {
+  background: rgb(255, 210, 223);
+  background: linear-gradient(
+    -156deg,
+    rgba(255, 210, 223, 1) 0%,
+    rgba(124, 122, 153, 1) 35%,
+    rgba(72, 87, 125, 1) 57%
+  );
+  padding: 30px;
+  margin-top: 150px;
+  max-height: 400px;
+}
+
+h3,
+p,
+a {
+  color: white;
+}
+
+p,
+a {
+  font-weight: lighter;
+  letter-spacing: 1px;
+}
+
+a {
+  text-decoration: underline;
+}

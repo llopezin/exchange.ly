@@ -41,11 +41,18 @@ export class CurrencyOptionsFormComponent implements OnInit {
   }
 
   buildCurrencyOptionsForm() {
+    console.log('building form');
+    console.log('base:', this.base);
+
     this.quantitySelector = new FormControl('1', [Validators.min(0)]);
     this.baseSelector = new FormControl(this.base, [Validators.min(0)]);
     this.currencyOptionsForm = this.formBuilder.group({
       baseSelector: this.baseSelector,
       quantitySelector: this.quantitySelector,
+    });
+
+    this.currencyOptionsForm.controls['baseSelector'].setValue(this.base, {
+      onlySelf: true,
     });
   }
 

@@ -1,6 +1,10 @@
 <app-currency-selector-overlay *ngIf="overlayVisible"></app-currency-selector-overlay>
 
+
 <section class="section__primary">
+
+    <h1>Historic rates</h1>
+
     <app-date-selectors (datesChangeEvent)="onDatesChange($event)"></app-date-selectors>
 
     <div class="lozenges-wrap">
