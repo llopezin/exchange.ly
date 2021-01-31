@@ -28,3 +28,53 @@ h1 {
   background-color: white;
   border-radius: 40px;
 }
+
+.rates__wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 10px;
+  margin-bottom: 30px;
+}
+
+@media (min-width: $md) {
+  .rates__wrap {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+@media (min-width: $lg) {
+  .rates__wrap {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
+
+.add-currency {
+  position: relative;
+  padding: 0;
+  font-size: 0;
+  max-height: 75px;
+  margin-top: 18px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.add-currency:focus,
+.add-currency:hover {
+  outline: none;
+  border: solid 3px white;
+  background-color: $font;
+}
+
+.add-currency:focus::after,
+.add-currency:hover::after {
+  color: white;
+}
+
+.add-currency::after {
+  content: "\002B";
+  margin-left: 4px;
+  color: $font;
+  font-size: 4rem;
+  font-weight: bolder;
+  font-family: fantasy;
+}

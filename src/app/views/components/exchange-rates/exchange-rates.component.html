@@ -20,12 +20,12 @@
     </div>
 
 
-    <div *ngIf="!loading">
+    <div class="rates__wrap" *ngIf="!loading">
         <app-exchange-rate [rate]="rates" [quantity]="quantity" *ngFor="let rates of displayedRates"
             (removeRateEvent)="removeRate($event)">
         </app-exchange-rate>
+        <button class="add-currency" (click)="showOverlay()">Add currency</button>
     </div>
 
-    <button (click)="showOverlay()">Add currency</button>
 
 </section>

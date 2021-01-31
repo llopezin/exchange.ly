@@ -4,3 +4,13 @@ button {
   border: solid 1px $blue;
   border-radius: 5px;
 }
+
+.close-button {
+  border: none;
+  cursor: pointer;
+}
+
+.close-button::after {
+  content: "\00D7";
+  font-size: larger;
+}

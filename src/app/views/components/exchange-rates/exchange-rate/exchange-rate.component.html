@@ -1,5 +1,5 @@
-<div *ngFor="let data of rate | keyvalue">
+<div class="rate-card" *ngFor="let data of rate | keyvalue">
     <h3>{{data.key}}</h3>
     <p>{{setValue(data.value)}}</p>
-    <button (click)="removeRate(data.key)">Close</button>
+    <button class="close-button" (click)="removeRate(data.key)"><span class="sr-only">Close</span></button>
 </div>

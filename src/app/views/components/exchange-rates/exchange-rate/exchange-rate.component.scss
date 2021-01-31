@@ -1,0 +1,24 @@
+.rate-card {
+  position: relative;
+  box-sizing: border-box;
+  background-color: white;
+  border-radius: 4px;
+  margin-bottom: -20px;
+}
+
+h3 {
+  padding: 8px 15px 0;
+}
+
+p {
+  text-align: end;
+  padding: 0 15px;
+  font-size: larger;
+}
+
+button.close-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 5px 12px;
+}
