@@ -22,6 +22,6 @@ export class ExchangeRateComponent implements OnInit {
   setValue(rateValue) {
     let quantity = this.quantity || 1;
     let value = rateValue * quantity;
-    return Math.round((value + Number.EPSILON) * 100) / 100;
+    return Math.floor((value + Number.EPSILON) * 100000) / 100000;
   }
 }

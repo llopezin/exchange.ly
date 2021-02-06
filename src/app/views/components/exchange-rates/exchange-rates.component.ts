@@ -89,15 +89,16 @@ export class ExchangeRatesComponent implements OnInit {
     this.store.dispatch(removeCurrency({ currency: rate }));
   }
 
+  changeCurrencyValues({ base, quantity }) {
+    if (this.quantity !== quantity) this.quantity = quantity;
+    if (this.base !== base) this.changeBase(base);
+  }
+
   changeBase(base) {
     this.base = base;
     this.store.dispatch(changeBase({ base: base }));
     this.getLatestRates();
     this.renderRates();
-  }
-
-  changeQuantity(quantity) {
-    this.quantity = quantity;
   }
 
   showOverlay() {

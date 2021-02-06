@@ -7,8 +7,8 @@
 
     <h1>Currencies</h1>
 
-    <app-currency-options-form [rates]="latestRates" (baseEvent)="changeBase($event)"
-        (quantityEvent)="changeQuantity($event)"></app-currency-options-form>
+    <app-currency-options-form [rates]="latestRates" (formChange)="changeCurrencyValues($event)">
+    </app-currency-options-form>
 
 
     <div id="loader" *ngIf="loading" role="alert" aria-busy="true">

@@ -19,10 +19,10 @@ export class CurrencyOptionsFormComponent implements OnInit {
   public baseSelector: FormControl;
   public quantitySelector: FormControl;
   public base: string;
+  public quantity: string = '1';
 
   @Input() public rates;
-  @Output() public baseEvent = new EventEmitter();
-  @Output() public quantityEvent = new EventEmitter();
+  @Output() public formChange = new EventEmitter();
 
   constructor(
     private formBuilder: FormBuilder,
@@ -37,11 +37,12 @@ export class CurrencyOptionsFormComponent implements OnInit {
     this.store.select('userCurrencyApp').subscribe(({ base }) => {
       this.base = base;
       this.buildCurrencyOptionsForm();
+      this.baseSelector.setValue(this.base);
     });
   }
 
   buildCurrencyOptionsForm() {
-    this.quantitySelector = new FormControl('1', [Validators.min(0)]);
+    this.quantitySelector = new FormControl(this.quantity, [Validators.min(0)]);
     this.baseSelector = new FormControl(this.base, [Validators.min(0)]);
     this.currencyOptionsForm = this.formBuilder.group({
       baseSelector: this.baseSelector,
@@ -54,12 +55,14 @@ export class CurrencyOptionsFormComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.baseSelector.touched) {
-      this.baseEvent.emit(this.baseSelector.value);
-    }
+    if (this.quantitySelector.touched || this.baseSelector.touched) {
+      this.base = this.baseSelector.value;
+      this.quantity = this.quantitySelector.value;
 
-    if (this.quantitySelector.touched) {
-      this.quantityEvent.emit(this.quantitySelector.value);
+      this.formChange.emit({
+        base: this.base,
+        quantity: this.quantity,
+      });
     }
   }
 }

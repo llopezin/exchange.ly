@@ -2,8 +2,7 @@
 
     <label class="sr-only" for="base-selector">base</label>
     <select name="baseSelector" id="base-selector" formControlName="baseSelector">
-        <option [value]="rate.key" [ngValue]="rate.key" *ngFor="let rate of rates | keyvalue"
-            ngSelected="rate.key == base">
+        <option [value]="rate.key" [ngValue]="rate.key" *ngFor="let rate of rates | keyvalue">
             {{rate.key}}
         </option>
     </select>
