@@ -35,22 +35,28 @@ export class HitoricRatesChartComponent implements OnInit {
 
   prepareData() {
     let dataObj = { dates: [] };
+
     for (let date in this.rates) {
       dataObj.dates.push(date);
-      let dateRates = this.rates[date];
+    }
 
+    dataObj.dates = dataObj.dates.sort();
+
+    dataObj.dates.forEach((date) => {
+      let dateRates = this.rates[date];
       for (let currency in dateRates) {
         dataObj[`${currency}`]
           ? dataObj[`${currency}`].push(dateRates[currency])
           : (dataObj[`${currency}`] = [dateRates[currency]]);
       }
-    }
+    });
 
     for (let array in dataObj) {
       if (dataObj[array].length >= 20)
         dataObj[array] = this.sampleData(dataObj[array]);
     }
 
+    console.log('dataObj:', dataObj);
     this.chartReadyData = dataObj;
   }
 
