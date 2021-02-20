@@ -52,7 +52,6 @@ picture {
   margin-top: 20px;
   background-color: $font;
   max-height: 0;
-  margin-bottom: 30px;
   overflow: hidden;
   transition: max-height 1s;
 }
@@ -68,6 +67,7 @@ picture {
     margin-top: 8px;
     background-color: white;
     overflow: visible;
+    margin-bottom: 30px;
   }
 
   #main-navigation.visible {
